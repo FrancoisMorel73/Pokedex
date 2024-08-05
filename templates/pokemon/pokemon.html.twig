@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail d'un Pokemon{% endblock %}
+
+{% block body %}
+
+<h1 id="title-detail" class="text-center pt-4 pb-5">Détails de {{ pokemon.name }}</h1>
+
+<div class="container d-flex flex-wrap">
+
+    <div id="img-pokemon" class="d-flex flex-wrap justify-content-center align-items-center p-2 col-12 col-md-5 col-lg-4">
+        <img class="col-10 col-md-12" src="{{ asset('images/' ~ pokemon.image)}}" alt="pokemon {{ pokemon.name }}">
+    </div>
+
+    <div class="card col-12 col-md-7 col-lg-8" style="background-color:#{{ pokemon.types|first.color }}">
+        <h2 class="card-header"># {{ pokemon.number }} {{ pokemon.name }}</h2>
+        <div class="card-body d-flex align-items-center">
+            {% for type in pokemon.types %}
+                <span id="badge" class="badge border px-3 py-2 ms-2" style="background-color: #{{ type.color }}">{{ type.name }}</span>
+            {% endfor %}
+        </div>
+        <div class="card-body pt-0">
+            <h3 class="card-title">Statistiques</h3>
+
+            <ul class="stats ps-0 m-3">
+
+                <li class="stats_item mt-2">
+                    <ul class="stats_details ps-0 d-flex align-items-center">
+                        <li class="stats_details_item col-3">PV</li> 
+                        <li class="stats_details_item col-2">{{ pokemon.hp }}</li>
+                        <li class="stats_details_item col-7">
+                            <div class="progress bg-secondary" role="progressbar" aria-valuenow="{{ pokemon.hp }}" aria-valuemin="0" aria-valuemax="{{ maxHP }}">
+                                <div class="progress-bar bg-white" style="width: {{ pokemon.hp / maxHP * 100 }}%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="stats_item mt-2">
+                    <ul class="stats_details ps-0 d-flex align-items-center">
+                        <li class="stats_details_item col-3">Attaque</li>
+                        <li class="stats_details_item col-2">{{ pokemon.attack }}</li>
+                        <li class="stats_details_item col-7">
+                            <div class="progress bg-secondary" role="progressbar" aria-valuenow="{{ pokemon.attack }}" aria-valuemin="0" aria-valuemax="{{ maxAttack }}">
+                                <div class="progress-bar bg-white" style="width: {{ pokemon.attack / maxAttack * 100 }}%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="stats_item mt-2">
+                    <ul class="stats_details ps-0 d-flex align-items-center">
+                        <li class="stats_details_item col-3">Défense</li>
+                        <li class="stats_details_item col-2">{{ pokemon.defense }}</li>
+                        <li class="stats_details_item col-7">
+                            <div class="progress bg-secondary" role="progressbar" aria-valuenow="{{ pokemon.defense }}" aria-valuemin="0" aria-valuemax="{{ maxDefense }}">
+                                <div class="progress-bar bg-white" style="width: {{ pokemon.defense / maxDefense * 100 }}%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="stats_item mt-2">
+                    <ul class="stats_details ps-0 d-flex align-items-center">
+                        <li class="stats_details_item col-3">Attaque Spé.</li>
+                        <li class="stats_details_item col-2">{{ pokemon.speAttack }}</li>
+                        <li class="stats_details_item col-7">
+                            <div class="progress bg-secondary" role="progressbar" aria-valuenow="{{ pokemon.speAttack }}" aria-valuemin="0" aria-valuemax="{{ maxSpeAttack }}">
+                                <div class="progress-bar bg-white" style="width: {{ pokemon.speAttack / maxSpeAttack * 100 }}%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="stats_item mt-2">
+                    <ul class="stats_details ps-0 d-flex align-items-center">
+                        <li class="stats_details_item col-3">Défense Spé.</li>
+                        <li class="stats_details_item col-2">{{ pokemon.speDefense }}</li>
+                        <li class="stats_details_item col-7">
+                            <div class="progress bg-secondary" role="progressbar" aria-valuenow="{{ pokemon.speDefense }}" aria-valuemin="0" aria-valuemax="{{ maxSpeDefense }}">
+                                <div class="progress-bar bg-white" style="width: {{ pokemon.speDefense / maxSpeDefense * 100 }}%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="stats_item mt-2">
+                    <ul class="stats_details ps-0 d-flex align-items-center">
+                        <li class="stats_details_item col-3">Vitesse</li>
+                        <li class="stats_details_item col-2">{{ pokemon.speed }}</li>
+                        <li class="stats_details_item col-7">
+                            <div class="progress bg-secondary" role="progressbar" aria-valuenow="{{ pokemon.speed }}" aria-valuemin="0" aria-valuemax="{{ maxSpeed }}">
+                                <div class="progress-bar bg-white" style="width: {{ pokemon.speed / maxSpeed * 100 }}%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center my-5 col-12">
+        <a href="{{ path('home') }}" class="btn btn-primary">
+            <i class="bi bi-house"></i>
+            <span class="d-none d-md-inline">Revenir à la liste</span>
+        </a>
+
+        <a href="{{ path('pokemon_edit', {'slug': pokemon.slug}) }}" class="btn btn-warning text-white ms-3">
+            <i class="bi bi-pencil"></i>
+            <span class="d-none d-md-inline">Modifier</span>
+        </a>
+
+        <button class="btn btn-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            <i class="bi bi-trash"></i>
+            <span class="d-none d-md-inline">Supprimer</span>
+        </button>
+
+        {{ include('pokemon/_delete_form.html.twig') }}
+    </div>
+
+</div>
+
+{% endblock %}

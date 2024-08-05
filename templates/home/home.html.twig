@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pokedex{% endblock %}
+
+{% block body %}
+
+<div id="theme" class="container d-flex justify-content-center flex-wrap mb-4">
+    {% for color in types %}
+        <div class="btn" aria-label="Pokemon Types">
+            <a href="{{ path('home', {'type': color.slug}) }}" data-type="{{ color.slug }}" class="btn" style="background-color:#{{ color.color }};">{{ color.name }}</a>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="container d-flex justify-content-center flex-wrap">
+    {% for pokemon in pokemons %}
+        <a class="card align-items-center m-2 m-2 col-11 col-sm-5 col-lg-3" style="background-color:#{{ pokemon.types|first.color }}" href="{{ path('pokemon_show', {'slug': pokemon.slug}) }}">
+            <img src="{{ asset('images/' ~ pokemon.image)}}" class="pokemon-image card-img-top p-3" alt="pokemon {{ pokemon.name }}">
+            <div class="card-body">
+                <h5 class="card-title text-center">#{{ pokemon.number }} {{pokemon.name}}</h5>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+{% endblock %}

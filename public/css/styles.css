@@ -1,0 +1,89 @@
+@import url(https://fonts.bunny.net/css?family=bree-serif:400);
+
+* {
+    font-family: 'Bree Serif', serif;
+}
+
+#theme div a {
+    border: 1px solid black;
+    color: white;
+}
+
+.stats, .stats_details {
+    list-style-type: none;
+}
+
+#badge {
+    font-size: 1em;
+}
+
+.card {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.pokemon-image {
+    max-width: 400px;
+    max-height: 400px;
+    height: 90%;
+    object-fit: contain;
+}
+
+#img-pokemon{
+    max-height: 400px;
+}
+
+#img-pokemon img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* Form */
+.types-checkboxes div {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #2C2C2C;
+    color: #ffffff;
+}
+
+body.light-mode {
+    background-color: #f0f0f0;
+    color: #000000;
+}
+
+body.dark-mode #navbar {
+    background-color: #333333;
+}
+
+body.light-mode #navbar {
+    background-color: #dcdcdc;
+}
+
+body.dark-mode #title {
+    color: #ffffff;
+}
+
+body.dark-mode #theme-label i {
+    color: #ffffff;
+}
+
+body.dark-mode #load-more {
+    color: #ffffff;
+}
+
+body.dark-mode #title-detail {
+    color: #ffffff;
+}
+
+body.dark-mode .icon {
+    color: #ffffff;
+}
+
+body.dark-mode #add {
+    color: #ffffff;
+}
